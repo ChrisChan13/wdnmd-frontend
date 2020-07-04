@@ -17,7 +17,7 @@ const request = async (url) => {
 };
 
 const getRoutes = async (defaultPathMap) => {
-  if (ENV === 'production') {
+  if (ENV !== 'dev') {
     const labels = await request('/labels');
     delete defaultPathMap['/category/[parent]'];
     delete defaultPathMap['/category/[parent]/[child]'];
@@ -50,6 +50,14 @@ const getRoutes = async (defaultPathMap) => {
   return defaultPathMap;
 };
 
+const getAssetPrefix = (env) => {
+  console.log(env);
+  // eslint-disable-next-line no-nested-ternary
+  const assetPrefix = env === 'test' ? '/wdnmd' : env === 'production' ? 'https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd' : '';
+  console.log(assetPrefix);
+  return assetPrefix;
+};
+
 module.exports = withLess({
   ...withCss(),
   publicRuntimeConfig: {
@@ -62,5 +70,6 @@ module.exports = withLess({
     importLoaders: 1,
     localIdentName: '[local]___[hash:base64:5]',
   },
-  assetPrefix: ENV === 'production' ? '/wdnmd' : '',
+  // eslint-disable-next-line no-nested-ternary
+  assetPrefix: getAssetPrefix(ENV),
 });

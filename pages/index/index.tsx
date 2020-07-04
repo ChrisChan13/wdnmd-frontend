@@ -15,7 +15,7 @@ const { env: ENV } = getConfig().publicRuntimeConfig;
 
 export default class Index extends React.Component<Props> {
   static async getInitialProps(props: AppContext) {
-    if (process.browser && ENV === 'production') return (window as any).__NEXT_DATA__.props.pageProps;
+    if (process.browser && ENV !== 'dev') return (window as any).__NEXT_DATA__.props.pageProps;
     const labels = await getLabels();
     return {
       labels,

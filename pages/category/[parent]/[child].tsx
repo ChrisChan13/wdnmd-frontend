@@ -16,7 +16,7 @@ const { env: ENV } = getConfig().publicRuntimeConfig;
 
 export default class Category extends React.Component<Props> {
   static async getInitialProps(props: { query: { parent: string, child: string } }) {
-    if (process.browser && ENV === 'production') return (window as any).__NEXT_DATA__.props.pageProps;
+    if (process.browser && ENV !== 'dev') return (window as any).__NEXT_DATA__.props.pageProps;
     const { parent, child } = props.query;
     const labels = await getLabels();
     return {

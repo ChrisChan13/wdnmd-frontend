@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev next",
-    "build": "cross-env NODE_ENV=prod next build",
-    "export": "next export"
+    "build:test": "cross-env NODE_ENV=test next build",
+    "build:prod": "cross-env NODE_ENV=production next build",
+    "export:test": "cross-env NODE_ENV=test next export",
+    "export:prod": "cross-env NODE_ENV=production next export"
   },
   "keywords": [],
   "author": "",

@@ -27,7 +27,7 @@ export default class Profile extends React.Component<Props> {
   }
 
   static async getInitialProps(props: AppContext) {
-    if (process.browser && ENV === 'production') return (window as any).__NEXT_DATA__.props.pageProps;
+    if (process.browser && ENV !== 'dev') return (window as any).__NEXT_DATA__.props.pageProps;
     const profile = await getProfile();
     return {
       profile,
