@@ -1,0 +1,114 @@
+.j2h-root * {
+  background: #FFF;
+}
+
+.j2h-root {
+  font-family: 'Inconsolata';
+}
+
+.j2h-root, .j2h-type-object, .j2h-type-array, .j2h-key, .j2h-value, .j2h-root tr {
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.j2h-key, .j2h-value {
+  margin: 0;
+  padding: 0.3em 0.5em;
+  font-weight: bold;
+}
+
+.j2h-value {
+  border-left: 1px solid #ddd;
+}
+
+.j2h-type-number {
+  text-align: center;
+  color: #5286BC;
+}
+
+.j2h-type-bool-true {
+  text-align: center;
+  color: #5A811C;
+}
+
+.j2h-type-bool-false {
+  text-align: center;
+  color: #D45317;
+}
+
+.j2h-type-bool-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: bottom;
+}
+
+.j2h-type-string {
+  font-style: italic;
+  color: #6E6E6E;
+}
+
+.j2h-array-key {
+  font-style: italic;
+  font-size: small;
+  text-align: center;
+}
+
+.j2h-object-key, .j2h-array-key {
+  color: #444;
+  vertical-align: top;
+}
+
+.j2h-object-key {
+  width: 7em;
+}
+
+.j2h-array-key {
+  width: 2em;
+}
+
+.j2h-type-object > tbody > tr:nth-child(odd), .j2h-type-array > tbody > tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+
+.j2h-type-object > tbody > tr:nth-child(even), .j2h-type-array > tbody > tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.j2h-type-object, .j2h-type-array {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.j2h-root {
+  border: 1px solid #ccc;
+  margin: 0.2em;
+}
+
+th.j2h-key {
+  text-align: left;
+}
+
+.j2h-type-object > tbody > tr, .j2h-type-array > tbody > tr {
+  border-bottom: none;
+}
+
+.j2h-empty {
+  font-style: italic;
+  color: #999;
+  font-size: small;
+}
+
+.j2h-a {
+  text-decoration: none;
+}
+
+.j2h-a:hover {
+  text-decoration: underline;
+}
+
+.j2h-a span.j2h-type-string {
+  text-decoration: none;
+  color : #268ddd;
+  font-style: normal;
+}
