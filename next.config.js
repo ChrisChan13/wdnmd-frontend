@@ -45,16 +45,26 @@ const getRoutes = async (defaultPathMap) => {
       });
       return item;
     });
+    const articles = await request('/articles');
+    delete defaultPathMap['/post/[id]'];
+    articles.map((item) => {
+      Object.assign(defaultPathMap, {
+        [`/post/${item._id}`]: {
+          page: '/post/[id]',
+          query: {
+            id: item._id,
+          },
+        },
+      });
+      return item;
+    });
   }
-  console.log(defaultPathMap);
   return defaultPathMap;
 };
 
 const getAssetPrefix = (env) => {
-  console.log(env);
   // eslint-disable-next-line no-nested-ternary
   const assetPrefix = env === 'test' ? '/wdnmd' : env === 'production' ? 'https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd' : '';
-  console.log(assetPrefix);
   return assetPrefix;
 };
 

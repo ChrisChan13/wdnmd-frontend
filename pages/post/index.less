@@ -1,0 +1,43 @@
+.container {
+  width: 960px;
+  margin: 80px auto 0 auto;
+}
+
+.article {
+  width: 700px;
+  box-sizing: border-box;
+  padding: 2em;
+  background: #fff;
+  &-head {
+    font-size: 14px;
+    color: #b2bac2;
+    margin-bottom: 1em;
+  }
+  &-label {
+    font-size: 12px;
+    color: #b2bac2;
+    cursor: pointer;
+    text-decoration: none;
+    &:not(:last-of-type)::after {
+      content: ' / ';
+      color: #b2bac2 !important;
+    }
+    &:visited {
+      color: #b2bac2;
+    }
+    &:hover,
+    &:active {
+      color: #007fff;
+    }
+  }
+  &-cover {
+    width: 100%;
+    display: block;
+    margin-bottom: 1em;
+  }
+  &-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 1.35em;
+  }
+}

@@ -29,6 +29,7 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-underscore-dangle": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "react/no-danger": "off"
   }
 }

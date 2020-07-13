@@ -5,12 +5,13 @@ import Head from 'next/head';
 import echarts from 'echarts';
 
 import '../../utils/json2html/index.css';
-import { getProfile } from '../../apis';
+import { getProfile, getHeatmap } from '../../apis';
 import style from './index.less';
 import json2html from '../../utils/json2html';
 
 type Props = {
   profile: {},
+  heatmap: [],
 };
 
 const { env: ENV } = getConfig().publicRuntimeConfig;
@@ -29,18 +30,19 @@ export default class Profile extends React.Component<Props> {
   static async getInitialProps(props: AppContext) {
     if (process.browser && ENV !== 'dev') return (window as any).__NEXT_DATA__.props.pageProps;
     const profile = await getProfile();
+    const heatmap = await getHeatmap();
     return {
       profile,
+      heatmap,
     };
   }
 
   componentDidMount() {
-    const { profile = {} } = this.props;
+    const { profile = {}, heatmap = [] } = this.props;
     if (this.profileTable) {
       (this.profileTable as any).current.append(json2html(profile));
     }
     if (this.activinessChart) {
-      const heatmap: [] = [];
       const now = new Date();
       const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
       const last = new Date(now.getTime() - ONE_YEAR);
@@ -88,7 +90,7 @@ export default class Profile extends React.Component<Props> {
         series: {
           type: 'heatmap',
           coordinateSystem: 'calendar',
-          data: heatmap.map((item: any) => ([item.date, item.counts])),
+          data: heatmap.map((item: any) => ([item.date, item.heat])),
         },
       };
       const chart = echarts.init((this.activinessChart as any).current);

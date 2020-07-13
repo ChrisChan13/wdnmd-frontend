@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
 import { UrlObject } from 'url';
@@ -7,25 +7,36 @@ const { env: ENV } = getConfig().publicRuntimeConfig;
 
 type Props = {
   href: string | UrlObject,
-  label: string,
+  label?: string,
   alias?: string,
   className?: string,
+  children?: ReactNode,
 };
 
 export default (props: Props) => {
   const {
-    href, alias, label, className = '',
+    href, alias, label, className = '', children,
   } = props;
   if (ENV === 'dev') {
     return (
       <Link href={href}>
-        <span className={className}>{label}</span>
+        {
+          children || <span className={className}>{label}</span>
+        }
       </Link>
     );
   }
   const prefix = '/wdnmd';
   const to = `${prefix}${alias || href.toString()}`;
   return (
-    <a href={to} className={className}>{label}</a>
+    <a
+      href={to}
+      style={{ textDecoration: 'none' }}
+      className={className}
+    >
+      {
+        children || label
+      }
+    </a>
   );
 };

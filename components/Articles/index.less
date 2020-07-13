@@ -18,9 +18,7 @@
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    &:not(:last-of-type) {
-      border-bottom: 1px solid rgba(178, 186, 194, .15);
-    }
+    border-bottom: 1px solid rgba(178, 186, 194, .15);
     &-head {
       font-size: 14px;
       color: #b2bac2;
@@ -30,6 +28,10 @@
       color: #b2bac2;
       cursor: pointer;
       text-decoration: none;
+      &:not(:last-of-type)::after {
+        content: ' / ';
+        color: #b2bac2 !important;
+      }
       &:visited {
         color: #b2bac2;
       }
@@ -61,6 +63,7 @@
       width: 60px;
       height: 60px;
       background: #b2bac2;
+      object-fit: cover;
     }
   }
 }
