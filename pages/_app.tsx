@@ -19,7 +19,7 @@ export default class wdnmd extends App {
           <title>WDNMD - ChrisChan</title>
           {
             ENV === 'production' && (
-              <script src="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/site.js" />
+              <script src="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/baidu.js" />
             )
           }
         </Head>
