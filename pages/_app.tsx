@@ -13,12 +13,15 @@ export default class wdnmd extends App {
   render() {
     const { Component, pageProps } = this.props;
     // eslint-disable-next-line no-nested-ternary
-    const assetPrefix = ENV === 'test' ? '/wdnmd' : ENV === 'production' ? 'https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd' : '';
     return (
       <div id="app">
         <Head>
           <title>WDNMD - ChrisChan</title>
-          {ENV !== 'dev' && <script src={`${assetPrefix}/site.js`} />}
+          {
+            ENV === 'production' && (
+              <script src="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/site.js" />
+            )
+          }
         </Head>
         <Header />
         <Component {...pageProps} />
