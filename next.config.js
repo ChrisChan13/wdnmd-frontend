@@ -59,6 +59,7 @@ const getRoutes = async (defaultPathMap) => {
       return item;
     });
   }
+  console.log(defaultPathMap);
   return defaultPathMap;
 };
 

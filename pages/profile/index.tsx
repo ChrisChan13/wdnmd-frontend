@@ -56,10 +56,10 @@ export default class Profile extends React.Component<Props> {
         },
         visualMap: {
           pieces: [
-            { gte: 0.1, lt: 1.25, color: '#d6e685' },
-            { gte: 1.25, lt: 2.5, color: '#8cc665' },
-            { gte: 2.5, lt: 5, color: '#44a340' },
-            { gte: 5, color: '#1e6923' },
+            { gte: 0.1, lt: 1.25, color: '#9be9a8' },
+            { gte: 1.25, lt: 2.5, color: '#40c463' },
+            { gte: 2.5, lt: 5, color: '#30a14e' },
+            { gte: 5, color: '#216e39' },
           ],
           hoverLink: false,
           itemWidth: 13,
