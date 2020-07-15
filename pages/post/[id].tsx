@@ -15,7 +15,24 @@ type Props = {
   article: any,
 };
 
-export default class Profile extends React.Component<Props> {
+type State = {
+  showCatalog: boolean;
+};
+
+export default class Profile extends React.Component<Props, State> {
+  articleContent: React.Ref<HTMLDivElement>;
+
+  articleCatalog: React.Ref<HTMLDivElement>;
+
+  constructor(props: any) {
+    super(props);
+    this.articleContent = React.createRef<HTMLDivElement>();
+    this.articleCatalog = React.createRef<HTMLDivElement>();
+    this.state = {
+      showCatalog: false,
+    };
+  }
+
   static async getInitialProps(props: { query: { id: string }}) {
     if (process.browser && ENV !== 'dev') return (window as any).__NEXT_DATA__.props.pageProps;
     const { id } = props.query;
@@ -25,8 +42,38 @@ export default class Profile extends React.Component<Props> {
     };
   }
 
+  componentDidMount() {
+    const list = document.createElement('ul');
+    (this.articleContent as any).current.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((element: HTMLDivElement) => {
+      const id = element.getAttribute('id');
+      const tag = element.localName;
+      if (id && /^h[1-6]$/.test(tag)) {
+        const level = +tag.slice(1);
+        const item = document.createElement('li');
+        item.innerText = element.innerText;
+        level > 1 && (
+          item.style.marginLeft = `${(level - 1) * 10}px`,
+          item.style.fontWeight = 'normal'
+        );
+        level > 2 && (item.style.fontSize = `${14 - (level - 2)}px`);
+        const link = document.createElement('a');
+        link.href = `#${id}`;
+        link.append(item);
+        list.append(link);
+      }
+    });
+    if (list.hasChildNodes()) {
+      this.setState({
+        showCatalog: true,
+      }, () => {
+        (this.articleCatalog as any).current.append(list);
+      });
+    }
+  }
+
   render() {
     const { article } = this.props;
+    const { showCatalog } = this.state;
     return (
       <div className={style.container}>
         <Head>
@@ -53,8 +100,30 @@ export default class Profile extends React.Component<Props> {
             )
           }
           <h1 className={style['article-title']}>{article.title}</h1>
-          <div className="markdown-content" dangerouslySetInnerHTML={{ __html: article.richtext }} />
+          <div
+            ref={this.articleContent}
+            className="markdown-content"
+            dangerouslySetInnerHTML={{ __html: article.richtext }}
+          />
         </div>
+        <div className={style.categories}>
+          <div ref={this.articleCatalog} className={style['categories-wrap']}>
+            {showCatalog && <span>目录</span>}
+          </div>
+        </div>
+        <style>
+          {`
+            .markdown-content h1,
+            .markdown-content h2,
+            .markdown-content h3,
+            .markdown-content h4,
+            .markdown-content h5,
+            .markdown-content h6 {
+              margin-top: calc(1em - 80px);
+              padding-top: 80px;
+            }
+          `}
+        </style>
       </div>
     );
   }
