@@ -19,6 +19,11 @@ export default class wdnmd extends App {
           <title>WDNMD - ChrisChan</title>
           {
             ENV === 'production' && (
+              <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/favicon.ico" />
+            )
+          }
+          {
+            ENV === 'production' && (
               <script src="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/baidu.js" />
             )
           }
