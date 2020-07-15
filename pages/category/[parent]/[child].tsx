@@ -1,5 +1,6 @@
 import React from 'react';
 import getConfig from 'next/config';
+import Head from 'next/head';
 
 import { getLabels, getArticles } from '../../../apis';
 import Labels from '../../../components/Labels';
@@ -12,6 +13,8 @@ type Props = {
   parent: string,
   child: string,
   articles: [],
+  parentEntity: any,
+  childEntity: any,
 };
 
 const { env: ENV } = getConfig().publicRuntimeConfig;
@@ -21,13 +24,15 @@ export default class Category extends React.Component<Props> {
     if (process.browser && ENV !== 'dev') return (window as any).__NEXT_DATA__.props.pageProps;
     const { parent, child } = props.query;
     const labels = await getLabels();
-    const { child: id } = getParentAndChild(labels, parent, child);
+    const { child: id, parentEntity, childEntity } = getParentAndChild(labels, parent, child);
     const articles = await getArticles(id);
     return {
       labels,
       parent,
       child,
       articles,
+      parentEntity,
+      childEntity,
     };
   }
 
@@ -37,9 +42,14 @@ export default class Category extends React.Component<Props> {
       parent,
       child,
       articles,
+      parentEntity,
+      childEntity,
     } = this.props;
     return (
       <div className={style.container}>
+        <Head>
+          <title>{`${childEntity.label} - ${parentEntity.label} - WDNMD - ChrisChan`}</title>
+        </Head>
         <Labels labels={labels} parent={parent} child={child} />
         <Articles articles={articles} />
       </div>

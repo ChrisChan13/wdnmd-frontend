@@ -45,27 +45,29 @@ export default class Header extends React.Component<{}, State> {
       label: '个人资料',
     }];
     return (
-      <div className={style.header}>
-        <div className={style['header-wrap']}>
-          <strong>
-            <Link
-              href="/"
-              label="WDNMD"
-              className={style['header-title']}
-            />
-          </strong>
-          <nav className={style['header-navs']}>
-            {
-              navs.map((route) => (
-                <Link
-                  href={route.url}
-                  label={route.label}
-                  className={`${style['header-navs-item']} ${route.match.test(currentRoute) ? style['header-navs-item_active'] : ''}`}
-                  key={route.url}
-                />
-              ))
-            }
-          </nav>
+      <div className={style['header-box']}>
+        <div className={style.header}>
+          <div className={style['header-wrap']}>
+            <strong>
+              <Link
+                href="/"
+                label="WDNMD"
+                className={style['header-title']}
+              />
+            </strong>
+            <nav className={style['header-navs']}>
+              {
+                navs.map((route) => (
+                  <Link
+                    href={route.url}
+                    label={route.label}
+                    className={`${style['header-navs-item']} ${route.match.test(currentRoute) ? style['header-navs-item_active'] : ''}`}
+                    key={route.url}
+                  />
+                ))
+              }
+            </nav>
+          </div>
         </div>
       </div>
     );

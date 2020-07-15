@@ -1,6 +1,6 @@
 import React from 'react';
 import getConfig from 'next/config';
-import hljs from 'highlight.js';
+import Head from 'next/head';
 
 import { getArticle } from '../../apis';
 import { formatTime } from '../../utils';
@@ -29,6 +29,9 @@ export default class Profile extends React.Component<Props> {
     const { article } = this.props;
     return (
       <div className={style.container}>
+        <Head>
+          <title>{`${article.title} - WDNMD - ChrisChan`}</title>
+        </Head>
         <div className={style.article}>
           <div className={style['article-head']}>
             <span>{formatTime(article.postedAt)}</span>

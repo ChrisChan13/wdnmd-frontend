@@ -13,6 +13,8 @@ export const getParentAndChild = (
   type Ids = {
     parent?: string,
     child?: string,
+    parentEntity?: {},
+    childEntity?: {},
   };
   const ids: Ids = {};
   if (parentAlias) {
@@ -27,6 +29,8 @@ export const getParentAndChild = (
     }
     ids.parent = replacedParent ? replacedParent._id : '';
     ids.child = replacedChild ? replacedChild._id : '';
+    ids.parentEntity = replacedParent;
+    ids.childEntity = replacedChild;
   }
   return ids;
 };

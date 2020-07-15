@@ -80,24 +80,26 @@ export default class Labels extends React.Component<Props, State> {
     }
     return (
       <div>
-        <div className={style.labels}>
-          <div className={style['labels-wrap']}>
-            <Link
-              key="0"
-              href="/"
-              label="推荐"
-              className={`${style['labels-item']} ${!parent ? style['labels-item_active'] : ''}`}
-            />
-            {
-              parents.map((item: any) => (
-                <Link
-                  key={item._id}
-                  href={`/category/${item.alias}`}
-                  label={item.label}
-                  className={`${style['labels-item']} ${parent === item._id ? style['labels-item_active'] : ''}`}
-                />
-              ))
-            }
+        <div className={style['labels-box']}>
+          <div className={style.labels}>
+            <div className={style['labels-wrap']}>
+              <Link
+                key="0"
+                href="/"
+                label="推荐"
+                className={`${style['labels-item']} ${!parent ? style['labels-item_active'] : ''}`}
+              />
+              {
+                parents.map((item: any) => (
+                  <Link
+                    key={item._id}
+                    href={`/category/${item.alias}`}
+                    label={item.label}
+                    className={`${style['labels-item']} ${parent === item._id ? style['labels-item_active'] : ''}`}
+                  />
+                ))
+              }
+            </div>
           </div>
         </div>
         {childrenNodes}
