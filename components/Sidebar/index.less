@@ -1,0 +1,28 @@
+.sidebar {
+  width: 240px;
+  position: fixed;
+  top: 125px;
+  left: calc(50% + 240px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  color: #909090;
+  a {
+    color: #909090;
+    text-decoration: none;
+    &:visited {
+      color: #909090;
+    }
+    &:hover,
+    &:active {
+      color: #007fff;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+}

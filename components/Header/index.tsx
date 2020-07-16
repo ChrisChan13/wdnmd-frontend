@@ -42,7 +42,7 @@ export default class Header extends React.Component<{}, State> {
     }, {
       url: '/profile',
       match: /^\/profile/,
-      label: '个人资料',
+      label: '关于我',
     }];
     return (
       <div className={style['header-box']}>

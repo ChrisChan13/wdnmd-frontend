@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { getLabels, getArticles } from '../../../apis';
 import Labels from '../../../components/Labels';
 import Articles from '../../../components/Articles';
+import Sidebar from '../../../components/Sidebar';
 import style from '../index.less';
 import { getParentAndChild } from '../../../utils';
 
@@ -46,6 +47,7 @@ export default class Category extends React.Component<Props> {
         </Head>
         <Labels labels={labels} parent={parent} />
         <Articles articles={articles} />
+        <Sidebar />
       </div>
     );
   }

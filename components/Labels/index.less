@@ -43,6 +43,7 @@
   &-children {
     display: flex;
     flex-wrap: wrap;
+    width: 700px;
     &-item {
       display: block;
       height: 24px;
@@ -66,6 +67,14 @@
         background: #007fff !important;
         color: #fff !important;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .labels {
+    &-children {
+      width: 100%;
     }
   }
 }
