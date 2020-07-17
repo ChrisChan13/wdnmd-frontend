@@ -48,14 +48,10 @@ export default class Profile extends React.Component<Props, State> {
     const articleMarkdown = document.createElement('div');
     articleMarkdown.classList.add('markdown-content');
     articleMarkdown.innerHTML = article.richtext;
+    lazyload('iframe', articleMarkdown, {
+      rootMargin: '0px 0px -130px 0px',
+    });
     (this.articleContent as any).current.append(articleMarkdown);
-    lazyload('#iframe', articleMarkdown, (target) => {
-      target.getElementsByTagName('iframe')[0].style.display = 'none';
-      return 0;
-    }, (targets) => targets.map((item: any) => {
-      item.getElementsByTagName('iframe')[0].style.display = 'block';
-      return 0;
-    }));
     const list = document.createElement('ul');
     (this.articleContent as any).current.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((element: HTMLDivElement) => {
       const id = element.getAttribute('id');
