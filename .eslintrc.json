@@ -30,6 +30,7 @@
     "import/extensions": "off",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
-    "react/no-danger": "off"
+    "react/no-danger": "off",
+    "no-param-reassign": "off"
   }
 }

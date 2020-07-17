@@ -8,6 +8,7 @@ import style from './index.less';
 import Link from '../../components/Link';
 import './markdown.css';
 import 'highlight.js/styles/github-gist.css';
+import lazyload from '../../utils/lazyload';
 
 const { env: ENV } = getConfig().publicRuntimeConfig;
 
@@ -43,6 +44,18 @@ export default class Profile extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    const { article } = this.props;
+    const articleMarkdown = document.createElement('div');
+    articleMarkdown.classList.add('markdown-content');
+    articleMarkdown.innerHTML = article.richtext;
+    (this.articleContent as any).current.append(articleMarkdown);
+    lazyload('#iframe', articleMarkdown, (target) => {
+      target.getElementsByTagName('iframe')[0].style.display = 'none';
+      return 0;
+    }, (targets) => targets.map((item: any) => {
+      item.getElementsByTagName('iframe')[0].style.display = 'block';
+      return 0;
+    }));
     const list = document.createElement('ul');
     (this.articleContent as any).current.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((element: HTMLDivElement) => {
       const id = element.getAttribute('id');
@@ -79,7 +92,7 @@ export default class Profile extends React.Component<Props, State> {
         <Head>
           <title>{`${article.title} - WDNMD - ChrisChan`}</title>
         </Head>
-        <div className={style.article}>
+        <div ref={this.articleContent} className={style.article}>
           <div className={style['article-head']}>
             <span>{formatTime(article.postedAt)}</span>
             <span>&nbsp;·&nbsp;</span>
@@ -100,11 +113,6 @@ export default class Profile extends React.Component<Props, State> {
             )
           }
           <h1 className={style['article-title']}>{article.title}</h1>
-          <div
-            ref={this.articleContent}
-            className="markdown-content"
-            dangerouslySetInnerHTML={{ __html: article.richtext }}
-          />
         </div>
         <div className={style.categories}>
           <div ref={this.articleCatalog} className={style['categories-wrap']}>
