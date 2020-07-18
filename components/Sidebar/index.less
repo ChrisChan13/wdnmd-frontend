@@ -3,11 +3,34 @@
   position: fixed;
   top: 125px;
   left: calc(50% + 240px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-size: 13px;
   color: #909090;
+  &-info {
+    box-sizing: border-box;
+    padding: 16px;
+    background: #fff;
+    margin-bottom: 20px;
+    > img {
+      width: 100%;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 16px;
+    }
+    > h2 {
+      margin: 0;
+      color: #333;
+    }
+    > span {
+      display: flex;
+      align-items: center;
+      color: #666;
+    }
+  }
+  &-external {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   a {
     color: #909090;
     text-decoration: none;
