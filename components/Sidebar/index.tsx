@@ -14,6 +14,9 @@ export default () => (
       Powered&nbsp;by&nbsp;
       <a href="https://github.com/ChrisChan13" target="_new">@ChrisChan13</a>
     </span>
-    <span>联系我&nbsp;:&nbsp;chrischan1213@qq.com</span>
+    <span>
+      联系我&nbsp;:&nbsp;
+      <a href="mailto:chrischan1213@qq.com">chrischan1213@qq.com</a>
+    </span>
   </div>
 );

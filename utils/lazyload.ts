@@ -4,7 +4,7 @@ const query = (selector: string, parent: any) => Array.from(
 
 export default (
   selector: string,
-  parent: any,
+  parent?: any,
   options?: {},
 ) => {
   const observer = new IntersectionObserver((changes: any) => {

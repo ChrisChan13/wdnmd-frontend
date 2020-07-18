@@ -12,7 +12,6 @@ const { env: ENV } = getConfig().publicRuntimeConfig;
 export default class wdnmd extends App {
   render() {
     const { Component, pageProps } = this.props;
-    // eslint-disable-next-line no-nested-ternary
     return (
       <div id="app">
         <Head>
