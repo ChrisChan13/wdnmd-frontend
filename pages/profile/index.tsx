@@ -104,7 +104,7 @@ export default class Profile extends React.Component<Props> {
       <div className={style.container}>
         <Head>
           <title>关于我 - WDNMD - ChrisChan</title>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=EB Garamond" />
         </Head>
         <h2>我的更新</h2>
         <div ref={this.activinessChart} className={style.activiness} />
