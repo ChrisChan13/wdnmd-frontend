@@ -16,6 +16,8 @@ export default (
         if (attribute) {
           const value = target.getAttribute(`data-${attribute}`);
           target.setAttribute(attribute, value);
+          target.removeAttribute('data-attribute');
+          target.removeAttribute(`data-${attribute}`);
         }
         observer.unobserve(target);
         return target;
@@ -27,7 +29,7 @@ export default (
     let value = '';
     switch (item.localName) {
       case 'iframe':
-      case 'image':
+      case 'img':
         attribute = 'src';
         value = item.getAttribute(attribute);
         break;
