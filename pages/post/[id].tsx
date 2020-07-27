@@ -51,9 +51,7 @@ export default class Profile extends React.Component<Props, State> {
     lazyload('iframe', articleMarkdown, {
       rootMargin: '0px 0px -130px 0px',
     });
-    lazyload('img', articleMarkdown, {
-      rootMargin: '0px 0px 100px 0px',
-    });
+    lazyload('img', articleMarkdown);
     (this.articleContent as any).current.append(articleMarkdown);
     const list = document.createElement('ul');
     (this.articleContent as any).current.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((element: HTMLDivElement) => {

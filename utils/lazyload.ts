@@ -25,22 +25,16 @@ export default (
     }
   }, options);
   query(selector, parent).forEach((item: any) => {
-    let attribute = '';
-    let value = '';
-    switch (item.localName) {
-      case 'iframe':
-      case 'img':
-        attribute = 'src';
-        value = item.getAttribute(attribute);
-        break;
-      default:
-    }
-    if (attribute) {
+    const attribute = 'src';
+    const value = item.getAttribute(attribute);
+    if (item.localName === 'img') {
+      item.setAttribute('src', 'data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="1183"></svg>');
+    } else {
       item.removeAttribute(attribute);
-      item.setAttribute('data-attribute', attribute);
-      item.setAttribute(`data-${attribute}`, value);
-      observer.observe(item);
     }
+    item.setAttribute('data-attribute', attribute);
+    item.setAttribute(`data-${attribute}`, value);
+    observer.observe(item);
     return item;
   });
 };
