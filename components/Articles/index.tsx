@@ -33,7 +33,7 @@ export default (props: Props) => {
                   article.labels.map((label: any) => (
                     <Link
                       key={label._id}
-                      href={`/category/${label.parent ? `${label.parent.alias}/` : ''}${label.alias}`}
+                      href={`/tag/${label.parent ? `${label.parent.alias}/` : ''}${label.alias}`}
                       label={label.label}
                       className={style['articles-item-label']}
                     />

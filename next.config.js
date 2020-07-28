@@ -19,11 +19,11 @@ const request = async (url) => {
 const getRoutes = async (defaultPathMap) => {
   if (ENV !== 'dev') {
     const labels = await request('/labels');
-    delete defaultPathMap['/category/[parent]'];
-    delete defaultPathMap['/category/[parent]/[child]'];
+    delete defaultPathMap['/tag/[parent]'];
+    delete defaultPathMap['/tag/[parent]/[child]'];
     labels.map((item) => {
-      let route = '/category';
-      let page = '/category';
+      let route = '/tag';
+      let page = '/tag';
       const query = { parent: item._id };
       if (item.parent) {
         const parent = labels.find((label) => label._id === item.parent);

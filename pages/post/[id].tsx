@@ -97,7 +97,7 @@ export default class Profile extends React.Component<Props, State> {
               article.labels.map((label: any) => (
                 <Link
                   key={label._id}
-                  href={`/category/${label.parent ? `${label.parent.alias}/` : ''}${label.alias}`}
+                  href={`/tag/${label.parent ? `${label.parent.alias}/` : ''}${label.alias}`}
                   label={label.label}
                   className={style['article-label']}
                 />

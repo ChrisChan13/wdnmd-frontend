@@ -61,7 +61,7 @@ export default class Labels extends React.Component<Props, State> {
         <div className={style['labels-children']}>
           <Link
             key={parent.toString()}
-            href={`/category/${parentlabel.alias}`}
+            href={`/tag/${parentlabel.alias}`}
             label="全部"
             className={`${style['labels-children-item']} ${!child ? style['labels-children-item_active'] : ''}`}
           />
@@ -69,7 +69,7 @@ export default class Labels extends React.Component<Props, State> {
             children.map((item: any) => (
               <Link
                 key={item._id}
-                href={`/category/${parentlabel.alias}/${item.alias}`}
+                href={`/tag/${parentlabel.alias}/${item.alias}`}
                 label={item.label}
                 className={`${style['labels-children-item']} ${child === item._id ? style['labels-children-item_active'] : ''}`}
               />
@@ -93,7 +93,7 @@ export default class Labels extends React.Component<Props, State> {
                 parents.map((item: any) => (
                   <Link
                     key={item._id}
-                    href={`/category/${item.alias}`}
+                    href={`/tag/${item.alias}`}
                     label={item.label}
                     className={`${style['labels-item']} ${parent === item._id ? style['labels-item_active'] : ''}`}
                   />

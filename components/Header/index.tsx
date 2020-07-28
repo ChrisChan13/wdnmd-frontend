@@ -37,7 +37,7 @@ export default class Header extends React.Component<{}, State> {
     const { route: currentRoute } = this.state;
     const navs = [{
       url: '/',
-      match: /^\/$|^\/category\/.*$/,
+      match: /^\/$|^\/tag\/.*$/,
       label: '首页',
     }, {
       url: '/profile',
