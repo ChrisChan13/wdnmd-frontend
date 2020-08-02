@@ -49,14 +49,13 @@ export default class Profile extends React.Component<Props> {
       const options = {
         tooltip: {
           formatter(params: any) {
-            const [date, counts] = params.data;
-            const [year, month, day] = date.split('-');
-            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+            const [date, heat] = params.data;
+            return date;
           },
         },
         visualMap: {
           pieces: [
-            { gte: 0.1, lt: 1.25, color: '#9be9a8' },
+            { gt: 0, lt: 1.25, color: '#9be9a8' },
             { gte: 1.25, lt: 2.5, color: '#40c463' },
             { gte: 2.5, lt: 5, color: '#30a14e' },
             { gte: 5, color: '#216e39' },

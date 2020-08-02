@@ -5,7 +5,7 @@ import style from './index.less';
 export default () => (
   <div className={style.sidebar}>
     <div className={style['sidebar-info']}>
-      <img src="https://avatars0.githubusercontent.com/u/27924290?s=460&u=5e2c0b0d559c85361b664c87a7e111e17357253c&v=4" alt="ChrisChan13" />
+      <img src="https://avatars3.githubusercontent.com/u/27924290" alt="ChrisChan13" />
       <h2>ChrisChan</h2>
       <span>ChrisChan13</span>
       <p>
