@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-param-reassign */
 const withCss = require('@zeit/next-css');
 const withLess = require('@zeit/next-less');
@@ -5,6 +6,7 @@ const withLess = require('@zeit/next-less');
 const fetch = require('isomorphic-unfetch');
 
 const ENV = process.env.NODE_ENV || 'dev';
+const PLATFORM = process.env.PLATFORM || 'github';
 
 const prefix = 'http://localhost:1213/api';
 
@@ -63,9 +65,14 @@ const getRoutes = async (defaultPathMap) => {
   return defaultPathMap;
 };
 
-const getAssetPrefix = (env) => {
-  // eslint-disable-next-line no-nested-ternary
-  const assetPrefix = env === 'test' ? '/wdnmd' : env === 'production' ? 'https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd' : '';
+const getAssetPrefix = (env, platform) => {
+  const assetPrefix = env === 'test'
+    ? '/wdnmd'
+    : env === 'production'
+      ? platform === 'gitee'
+        ? '/wdnmd'
+        : 'https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd'
+      : '';
   return assetPrefix;
 };
 
@@ -73,6 +80,7 @@ module.exports = withLess({
   ...withCss(),
   publicRuntimeConfig: {
     env: ENV,
+    platform: PLATFORM,
   },
   exportPathMap: getRoutes,
   exportTrailingSlash: true,
@@ -82,5 +90,5 @@ module.exports = withLess({
     localIdentName: '[local]___[hash:base64:5]',
   },
   // eslint-disable-next-line no-nested-ternary
-  assetPrefix: getAssetPrefix(ENV),
+  assetPrefix: getAssetPrefix(ENV, PLATFORM),
 });

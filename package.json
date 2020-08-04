@@ -7,8 +7,10 @@
     "dev": "cross-env NODE_ENV=dev next",
     "build:test": "cross-env NODE_ENV=test next build",
     "build:prod": "cross-env NODE_ENV=production next build",
+    "build:gitee": "cross-env NODE_ENV=production PLATFORM=gitee next build",
     "export:test": "cross-env NODE_ENV=test next export",
-    "export:prod": "cross-env NODE_ENV=production next export"
+    "export:prod": "cross-env NODE_ENV=production next export",
+    "export:gitee": "cross-env NODE_ENV=production PLATFORM=gitee next export"
   },
   "keywords": [],
   "author": "",

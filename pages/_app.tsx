@@ -7,7 +7,7 @@ import './_app.less';
 
 import Header from '../components/Header';
 
-const { env: ENV } = getConfig().publicRuntimeConfig;
+const { env: ENV, platform: PLATFORM } = getConfig().publicRuntimeConfig;
 
 export default class wdnmd extends App {
   render() {
@@ -18,12 +18,16 @@ export default class wdnmd extends App {
           <title>WDNMD - ChrisChan</title>
           {
             ENV === 'production' && (
-              <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/favicon.ico" />
+              PLATFORM === 'gitee'
+                ? <link rel="shortcut icon" href="/wdnmd/favicon.ico" />
+                : <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/favicon.ico" />
             )
           }
           {
             ENV === 'production' && (
-              <script src="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/baidu.js" />
+              PLATFORM === 'gitee'
+                ? <script src="/wdnmd/baidu.js" />
+                : <script src="https://cdn.jsdelivr.net/gh/ChrisChan13/wdnmd/baidu.js" />
             )
           }
         </Head>

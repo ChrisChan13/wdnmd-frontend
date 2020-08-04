@@ -11,7 +11,7 @@ export default () => (
       <p>
         <span>TypeError: Cannot read property &apos;Bio&apos; of undefined</span>
       </p>
-      <span role="img" aria-hidden="true">6 followers · 6 following · ⭐ 116</span>
+      <span role="img" aria-hidden="true">6 followers · 6 following · ⭐ 117</span>
     </div>
     <div className={style['sidebar-external']}>
       <span>·&nbsp;友情链接&nbsp;·</span>
