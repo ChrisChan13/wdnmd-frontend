@@ -6,6 +6,7 @@ import { getLabels, getArticles } from '../../../apis';
 import Labels from '../../../components/Labels';
 import Articles from '../../../components/Articles';
 import Sidebar from '../../../components/Sidebar';
+import NoMore from '../../../components/NoMore';
 import style from '../index.less';
 import { getParentAndChild } from '../../../utils';
 
@@ -53,6 +54,7 @@ export default class Category extends React.Component<Props> {
         </Head>
         <Labels labels={labels} parent={parent} child={child} />
         <Articles articles={articles} />
+        {articles.length > 0 && <NoMore />}
         <Sidebar />
       </div>
     );

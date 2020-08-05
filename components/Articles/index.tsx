@@ -46,7 +46,7 @@ export default (props: Props) => {
                 <span>{formatTime(article.updatedAt)}</span>
               </div>
               <div className={style['articles-item-title']}>
-                <span>{article.title}</span>
+                <span title={article.title}>{article.title}</span>
               </div>
               {
                 article.cover && (

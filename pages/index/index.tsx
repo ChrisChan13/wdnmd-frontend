@@ -7,6 +7,7 @@ import style from './index.less';
 import Labels from '../../components/Labels';
 import Articles from '../../components/Articles';
 import Siderbar from '../../components/Sidebar';
+import NoMore from '../../components/NoMore';
 
 type Props = {
   labels: [],
@@ -32,6 +33,7 @@ export default class Index extends React.Component<Props> {
       <div className={style.container}>
         <Labels labels={labels} />
         <Articles articles={articles} />
+        {articles.length > 0 && <NoMore />}
         <Siderbar />
       </div>
     );
