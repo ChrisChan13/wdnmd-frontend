@@ -40,6 +40,11 @@ export default (props: Props) => {
                   ))
                 }
               </div>
+              <div className={style['articles-item-head']}>
+                <span>最近更新</span>
+                <span>&nbsp;·&nbsp;</span>
+                <span>{formatTime(article.updatedAt)}</span>
+              </div>
               <div className={style['articles-item-title']}>
                 <span>{article.title}</span>
               </div>

@@ -104,6 +104,11 @@ export default class Profile extends React.Component<Props, State> {
               ))
             }
           </div>
+          <div className={style['article-head']}>
+            <span>最近更新</span>
+            <span>&nbsp;·&nbsp;</span>
+            <span>{formatTime(article.updatedAt)}</span>
+          </div>
           {
             article.cover && (
               <img src={article.cover} alt={article.title} className={style['article-cover']} />

@@ -35,14 +35,16 @@ export const getParentAndChild = (
   return ids;
 };
 
+const padNumberStart = (number: number, length: number = 2) => `${number}`.padStart(2, '0');
+
 /**
  * 转换时间格式
  * @param time 时间字符串
  */
 export const formatTime = (time: string) => {
-  const d = new Date(time);
-  const now = Date.now();
-  const diff = (now - d.getTime()) / 1000;
+  const date = new Date(time);
+  const now = new Date();
+  const diff = (+now - date.getTime()) / 1000;
   if (diff < 30) {
     return '刚刚';
   } if (diff < 3600) {
@@ -51,18 +53,10 @@ export const formatTime = (time: string) => {
     return `${Math.ceil(diff / 3600)}小时前`;
   } if (diff <= 3600 * 24 * 7) {
     return `${Math.floor(diff / (3600 * 24))}天前`;
+  } if (now.getFullYear() === date.getFullYear()) {
+    return `${padNumberStart(date.getMonth() + 1)}-${padNumberStart(date.getDate())} ${padNumberStart(date.getHours())}:${padNumberStart(date.getMinutes())}`;
   }
-  return (
-    `${d.getMonth()
-      + 1
-    }月${
-      d.getDate()
-    }日${
-      d.getHours()
-    }时${
-      d.getMinutes()
-    }分`
-  );
+  return `${date.getFullYear()}-${padNumberStart(date.getMonth() + 1)}-${padNumberStart(date.getDate())} ${padNumberStart(date.getHours())}:${padNumberStart(date.getMinutes())}`;
 };
 
 export default {
