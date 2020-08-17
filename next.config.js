@@ -26,15 +26,10 @@ const getRoutes = async (defaultPathMap) => {
     labels.map((item) => {
       let route = '/tag';
       let page = '/tag';
-      const query = { parent: item._id };
       if (item.parent) {
         const parent = labels.find((label) => label._id === item.parent);
         route += `/${parent.alias}`;
         page += '/[parent]/[child]';
-        Object.assign(query, {
-          parent: item.parent,
-          child: item._id,
-        });
       } else {
         page += '/[parent]';
       }
@@ -42,7 +37,6 @@ const getRoutes = async (defaultPathMap) => {
       Object.assign(defaultPathMap, {
         [`${route}`]: {
           page,
-          query,
         },
       });
       return item;
@@ -89,6 +83,5 @@ module.exports = withLess({
     importLoaders: 1,
     localIdentName: '[local]___[hash:base64:5]',
   },
-  // eslint-disable-next-line no-nested-ternary
   assetPrefix: getAssetPrefix(ENV, PLATFORM),
 });
