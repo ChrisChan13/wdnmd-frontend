@@ -17,9 +17,9 @@ type Props = {
 const { env: ENV } = getConfig().publicRuntimeConfig;
 
 export default class Profile extends React.Component<Props> {
-  profileTable: React.Ref<HTMLDivElement>;
+  profileTable: React.RefObject<HTMLDivElement>;
 
-  activinessChart: React.Ref<HTMLDivElement>;
+  activinessChart: React.RefObject<HTMLDivElement>;
 
   constructor(props: any) {
     super(props);
@@ -39,10 +39,10 @@ export default class Profile extends React.Component<Props> {
 
   componentDidMount() {
     const { profile = {}, heatmap = [] } = this.props;
-    if (this.profileTable) {
-      (this.profileTable as any).current.append(json2html(profile));
+    if (this.profileTable.current) {
+      this.profileTable.current.append(json2html(profile));
     }
-    if (this.activinessChart) {
+    if (this.activinessChart.current) {
       const now = new Date();
       const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
       const last = new Date(now.getTime() - ONE_YEAR);
@@ -92,7 +92,7 @@ export default class Profile extends React.Component<Props> {
           data: heatmap.map((item: any) => ([item.date, item.heat])),
         },
       };
-      const chart = echarts.init((this.activinessChart as any).current);
+      const chart = echarts.init(this.activinessChart.current);
       chart.clear();
       chart.setOption(options);
     }

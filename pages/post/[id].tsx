@@ -21,9 +21,9 @@ type State = {
 };
 
 export default class Profile extends React.Component<Props, State> {
-  articleContent: React.Ref<HTMLDivElement>;
+  articleContent: React.RefObject<HTMLDivElement>;
 
-  articleCatalog: React.Ref<HTMLDivElement>;
+  articleCatalog: React.RefObject<HTMLDivElement>;
 
   constructor(props: any) {
     super(props);
@@ -52,31 +52,37 @@ export default class Profile extends React.Component<Props, State> {
       rootMargin: '0px 0px -130px 0px',
     });
     lazyload('img', articleMarkdown);
-    (this.articleContent as any).current.append(articleMarkdown);
+    if (this.articleContent.current) {
+      this.articleContent.current.append(articleMarkdown);
+    }
     const list = document.createElement('ul');
-    (this.articleContent as any).current.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((element: HTMLDivElement) => {
-      const id = element.getAttribute('id');
-      const tag = element.localName;
-      if (id && /^h[1-6]$/.test(tag)) {
-        const level = +tag.slice(1);
-        const item = document.createElement('li');
-        item.innerText = element.innerText;
-        level > 1 && (
-          item.style.marginLeft = `${(level - 1) * 10}px`,
-          item.style.fontWeight = 'normal'
-        );
-        level > 2 && (item.style.fontSize = `${14 - (level - 2)}px`);
-        const link = document.createElement('a');
-        link.href = `#${id}`;
-        link.append(item);
-        list.append(link);
-      }
-    });
+    if (this.articleContent.current) {
+      this.articleContent.current.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach((element: Element) => {
+        const id = element.getAttribute('id');
+        const tag = element.localName;
+        if (id && /^h[1-6]$/.test(tag)) {
+          const level = +tag.slice(1);
+          const item = document.createElement('li');
+          item.innerText = (element as HTMLDivElement).innerText;
+          level > 1 && (
+            item.style.marginLeft = `${(level - 1) * 10}px`,
+            item.style.fontWeight = 'normal'
+          );
+          level > 2 && (item.style.fontSize = `${14 - (level - 2)}px`);
+          const link = document.createElement('a');
+          link.href = `#${id}`;
+          link.append(item);
+          list.append(link);
+        }
+      });
+    }
     if (list.hasChildNodes()) {
       this.setState({
         showCatalog: true,
       }, () => {
-        (this.articleCatalog as any).current.append(list);
+        if (this.articleCatalog.current) {
+          this.articleCatalog.current.append(list);
+        }
       });
     }
   }

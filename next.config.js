@@ -47,9 +47,6 @@ const getRoutes = async (defaultPathMap) => {
       Object.assign(defaultPathMap, {
         [`/post/${item._id}`]: {
           page: '/post/[id]',
-          query: {
-            id: item._id,
-          },
         },
       });
       return item;
